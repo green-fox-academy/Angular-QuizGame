@@ -1,15 +1,24 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
 import { Question } from '../models/question';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   getRandom(): Observable<Question> {
-    return this.http.get<Question>('api/questions/random');
+    return of({
+      description: 'When did the titanic sink?',
+      answers: [
+        { description: '1912', isCorrect: true },
+        { description: '1914', isCorrect: false },
+        { description: '1917', isCorrect: false },
+        { description: '1918', isCorrect: false }
+      ]
+    });
   }
 }
