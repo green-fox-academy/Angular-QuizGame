@@ -1,0 +1,17 @@
+<div>
+  <p class="text-center">{{ question?.description }}</p>
+  <div class="text-center">
+    <button
+      class="w-50 m-2 btn btn-primary"
+      *ngFor="let answer of question?.answers"
+      (click)="userAnswer(answer)"
+      [ngClass]="{
+        'btn-success': selectedAnswer && answer.isCorrect,
+        'btn-danger': selectedAnswer && !answer.isCorrect && selectedAnswer.description === answer.description
+      }"
+      [disabled]="selectedAnswer"
+    >
+      {{ answer.description }}
+    </button>
+  </div>
+</div>
